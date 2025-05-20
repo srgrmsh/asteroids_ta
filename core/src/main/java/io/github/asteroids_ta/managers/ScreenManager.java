@@ -1,22 +1,24 @@
 package io.github.asteroids_ta.managers;
 
 import io.github.asteroids_ta.AsteroidsGame;
-import io.github.asteroids_ta.controllers.GameController;
+import io.github.asteroids_ta.factory.GameControllerFactory;
 import io.github.asteroids_ta.screens.GameOverScreen;
 import io.github.asteroids_ta.screens.GameScreen;
 import io.github.asteroids_ta.screens.MainMenuScreen;
 
 public class ScreenManager {
-
-    private static ScreenManager instance;
+    private static volatile ScreenManager instance;
     private AsteroidsGame game;
-    private GameController gameController;
 
     private ScreenManager() {}
 
     public static ScreenManager getInstance() {
         if (instance == null) {
-            instance = new ScreenManager();
+            synchronized (ScreenManager.class) {
+                if (instance == null) {
+                    instance = new ScreenManager();
+                }
+            }
         }
         return instance;
     }
@@ -30,15 +32,15 @@ public class ScreenManager {
     }
 
     public void showGameScreen() {
-        if (gameController == null) {
-            gameController = new GameController(
-                game.getBatch(),
-                new GameStatManager(Constants.INITIAL_LIVES)
-            );
+
+        GameControllerFactory factory = GameControllerFactory.getInstance();
+        if (factory.getCurrentController() == null) {
+            factory.createController(game.getBatch());
         } else {
-            gameController.reset();
+            factory.resetCurrentController();
         }
-        game.setScreen(new GameScreen(game, gameController));
+
+        game.setScreen(new GameScreen(game, factory.getCurrentController()));
     }
 
     public void showGameOverScreen() {
@@ -46,9 +48,6 @@ public class ScreenManager {
     }
 
     public void dispose() {
-        if (gameController != null) {
-            gameController.dispose();
-            gameController = null;
-        }
+        GameControllerFactory.getInstance().disposeCurrentController();
     }
 }
