@@ -7,9 +7,11 @@ import io.github.asteroids_ta.constants.Constants;
 import io.github.asteroids_ta.managers.ScreenManager;
 
 public class GameOverController extends BaseMenuController {
+    private final int finalScore;
 
-    public GameOverController(SpriteBatch batch) {
+    public GameOverController(SpriteBatch batch, int finalScore) {
         super(batch);
+        this.finalScore = finalScore;
     }
 
     public void update() {
@@ -23,6 +25,7 @@ public class GameOverController extends BaseMenuController {
 
     public void render() {
         renderCenteredText(Constants.GAME_OVER_TITLE, Constants.MENU_TITLE_OFFSET);
+        renderCenteredText(String.format(Constants.FINAL_SCORE_TEXT, finalScore), Constants.FINAL_SCORE_OFFSET);
         renderCenteredText(Constants.GAME_OVER_TEXT, Constants.MENU_TEXT_OFFSET);
     }
 }

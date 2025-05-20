@@ -1,24 +1,23 @@
 package io.github.asteroids_ta.controllers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.github.asteroids_ta.constants.Constants;
+import io.github.asteroids_ta.factory.PlayerFactory;
 import io.github.asteroids_ta.models.Player;
 import io.github.asteroids_ta.systems.InputHandler;
 
 public class PlayerController {
     private final Player player;
-    private final Texture playerTexture;
-    private final InputHandler inputHandler;
+    private final PlayerFactory playerFactory;
     private final TextureRegion playerTextureRegion;
+    private final InputHandler inputHandler;
     private boolean disposed;
 
-    public PlayerController(Player player) {
+    public PlayerController(Player player, PlayerFactory playerFactory) {
         this.player = player;
-        this.playerTexture = new Texture(Gdx.files.internal(Constants.PLAYER_SHIP_PATH));
-        this.playerTextureRegion = new TextureRegion(playerTexture);
+        this.playerFactory = playerFactory;
+        this.playerTextureRegion = new TextureRegion(playerFactory.getPlayerTexture());
         this.inputHandler = new InputHandler(player);
         this.disposed = false;
     }
@@ -35,41 +34,40 @@ public class PlayerController {
         if (disposed) {
             throw new IllegalStateException("PlayerController has been disposed");
         }
-        float originX = playerTexture.getWidth() / 2f;
-        float originY = playerTexture.getHeight() / 2f;
+        float originX = playerFactory.getPlayerTexture().getWidth() / 2f;
+        float originY = playerFactory.getPlayerTexture().getHeight() / 2f;
         batch.draw(
-            playerTextureRegion,
-            player.getPosition().x - originX,
-            player.getPosition().y - originY,
-            originX,
-            originY,
-            playerTexture.getWidth(),
-            playerTexture.getHeight(),
-            Constants.PLAYER_SCALE,
-            Constants.PLAYER_SCALE,
-            player.getRotation() - Constants.PLAYER_ROTATION_OFFSET
+                playerTextureRegion,
+                player.getPosition().x - originX,
+                player.getPosition().y - originY,
+                originX,
+                originY,
+                playerFactory.getPlayerTexture().getWidth(),
+                playerFactory.getPlayerTexture().getHeight(),
+                Constants.PLAYER_SCALE,
+                Constants.PLAYER_SCALE,
+                player.getRotation() - Constants.PLAYER_ROTATION_OFFSET
         );
     }
 
     public Player getPlayer() {
+        if (disposed) {
+            throw new IllegalStateException("PlayerController has been disposed");
+        }
         return player;
     }
 
     public void reset() {
+        if (disposed) {
+            throw new IllegalStateException("PlayerController has been disposed");
+        }
         player.reset();
     }
 
     public void dispose() {
         if (!disposed) {
             player.dispose();
-            if (playerTexture != null) {
-                playerTexture.dispose();
-            }
             disposed = true;
         }
-    }
-
-    public boolean isDisposed() {
-        return disposed;
     }
 }

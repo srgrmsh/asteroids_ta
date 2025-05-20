@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.asteroids_ta.constants.Constants;
 import io.github.asteroids_ta.factory.AsteroidFactory;
+import io.github.asteroids_ta.factory.PlayerFactory;
 import io.github.asteroids_ta.managers.GameStatManager;
 import io.github.asteroids_ta.managers.ScreenManager;
 import io.github.asteroids_ta.models.Player;
@@ -12,23 +13,28 @@ import io.github.asteroids_ta.systems.CollisionSystem;
 public class GameController {
     private final PlayerController playerController;
     private final AsteroidController asteroidController;
+    private final CollisionSystem collisionSystem;
     private final GameStatManager gameStatManager;
+    private final PlayerFactory playerFactory;
     private float timeElapsed = 0f;
 
-    public GameController(SpriteBatch batch, GameStatManager gameStatManager) {
+    public GameController(GameStatManager gameStatManager) {
         this.gameStatManager = gameStatManager;
 
-        Player player = new Player();
-        this.playerController = new PlayerController(player);
+        this.playerFactory = new PlayerFactory();
+        Player player = playerFactory.create();
+        this.playerController = new PlayerController(player, playerFactory);
 
         AsteroidFactory asteroidFactory = new AsteroidFactory(Gdx.files.internal(Constants.METEORS_PATH));
         this.asteroidController = new AsteroidController(asteroidFactory);
 
+        this.collisionSystem = new CollisionSystem(playerController, asteroidController, gameStatManager);
     }
 
     public void update(float delta) {
         playerController.update(delta);
         asteroidController.update(delta);
+        collisionSystem.update();
 
         timeElapsed += delta;
         if (timeElapsed >= Constants.SCORE_INTERVAL) {
@@ -59,6 +65,9 @@ public class GameController {
         }
         if (asteroidController != null) {
             asteroidController.dispose();
+        }
+        if (playerFactory != null) {
+            playerFactory.dispose();
         }
     }
 
