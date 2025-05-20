@@ -4,6 +4,15 @@ public class Constants {
     public static final float WORLD_WIDTH = 1280;
     public static final float WORLD_HEIGHT = 720;
 
+    public static final float PLAYER_RADIUS = 37.5f;
+    public static final float PLAYER_INITIAL_ROTATION = 90f;
+    public static final float PLAYER_SPEED = 400f;
+    public static final float PLAYER_DAMPING = 0.985f;
+    public static final float PLAYER_THRUST = 30f;
+
+    public static final int INITIAL_LIVES = 3;
+    public static final float ASTEROID_RADIUS_DIVISOR = 4f;
+
     public static final float FONT_SCALE = 2f;
 
     public static final String BACKGROUND_TILE_PATH = "assets/Backgrounds/black.png";
