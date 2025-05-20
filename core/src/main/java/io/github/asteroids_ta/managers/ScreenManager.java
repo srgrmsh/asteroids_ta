@@ -32,10 +32,9 @@ public class ScreenManager {
     }
 
     public void showGameScreen() {
-
         GameControllerFactory factory = GameControllerFactory.getInstance();
         if (factory.getCurrentController() == null) {
-            factory.createController(game.getBatch());
+            factory.createController();
         } else {
             factory.resetCurrentController();
         }

@@ -40,10 +40,6 @@ public class BackgroundManager {
     }
 
     public void render(SpriteBatch batch) {
-        if (disposed) {
-            throw new IllegalStateException("BackgroundManager has been disposed");
-        }
-
         for (Vector2 position : tilePositions) {
             batch.draw(tileRegion,
                 position.x,
