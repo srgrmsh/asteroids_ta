@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import io.github.asteroids_ta.managers.ScreenManager;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class AsteroidsGame extends Game {
@@ -17,6 +18,8 @@ public class AsteroidsGame extends Game {
     public void create() {
         batch = new SpriteBatch();
         image = new Texture("libgdx.png");
+
+        ScreenManager.getInstance().initialize(this);
     }
 
     @Override
@@ -25,6 +28,10 @@ public class AsteroidsGame extends Game {
         batch.begin();
         batch.draw(image, 140, 210);
         batch.end();
+    }
+
+    public SpriteBatch getBatch() {
+        return batch;
     }
 
     @Override
