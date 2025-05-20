@@ -30,7 +30,6 @@ public class GameController {
         playerController.update(delta);
         asteroidController.update(delta);
 
-        // Update time-based score
         timeElapsed += delta;
         if (timeElapsed >= Constants.SCORE_INTERVAL) {
             gameStatManager.getScoreManager().addScore(Constants.SCORE_PER_INTERVAL);
