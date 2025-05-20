@@ -18,10 +18,9 @@ public class GameControllerFactory {
         return instance;
     }
 
-    public GameController createController(SpriteBatch batch) {
+    public void createController() {
         GameStatManager gameStatManager = new GameStatManager(Constants.INITIAL_LIVES);
-        currentController = new GameController(batch, gameStatManager);
-        return currentController;
+        currentController = new GameController(gameStatManager);
     }
 
     public GameController getCurrentController() {
