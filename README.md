@@ -124,10 +124,22 @@ The project uses GitHub Actions for continuous integration. Every push to the `d
 3. Scroll down to the "Artifacts" section
 4. Download the `AsteroidsDesktopJar.zip` file
 5. Extract from archive `Asteroids_TA-1.0.0.jar`
-6. Run the jar file using:
+
+#### Running the Game
+1. Install Java Runtime Environment (JRE) if not already installed:
+   - Windows: Download from [Oracle](https://www.oracle.com/java/technologies/downloads/) or use [OpenJDK](https://adoptium.net/)
+   - macOS: Use Homebrew: `brew install openjdk`
+   - Linux: Use package manager: `sudo apt install default-jre` (Ubuntu/Debian)
+
+2. Run the jar file:
    ```bash
    java -jar Asteroids_TA-1.0.0.jar
    ```
+
+#### Troubleshooting
+- If the game doesn't start, ensure Java is installed by running `java -version` in terminal/command prompt
+- For graphics issues, update your graphics drivers
+- If you get "Unable to access jarfile" error, ensure you're in the correct directory
 
 ## Acknowledgments
 
