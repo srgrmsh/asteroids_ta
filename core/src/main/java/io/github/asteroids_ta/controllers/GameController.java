@@ -25,7 +25,7 @@ public class GameController {
         Player player = playerFactory.create();
         this.playerController = new PlayerController(player, playerFactory);
 
-        AsteroidFactory asteroidFactory = new AsteroidFactory(Gdx.files.internal(Constants.METEORS_PATH));
+        AsteroidFactory asteroidFactory = new AsteroidFactory();
         this.asteroidController = new AsteroidController(asteroidFactory);
 
         this.collisionSystem = new CollisionSystem(playerController, asteroidController, gameStatManager);

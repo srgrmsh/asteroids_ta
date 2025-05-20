@@ -19,6 +19,10 @@ public class Constants {
     public static final int MAX_ASTEROIDS = 10;
     public static final float SCORE_INTERVAL = 1f;
     public static final int SCORE_PER_INTERVAL = 10;
+    public static final float ASTEROID_MIN_ANGLE = 0f;
+    public static final float ASTEROID_MAX_ANGLE = 360f;
+    public static final float ASTEROID_MIN_SPEED = 50f;
+    public static final float ASTEROID_MAX_SPEED = 150f;
 
     public static final float FONT_SCALE = 2f;
     public static final float UI_X_PADDING = 20f;
@@ -38,9 +42,33 @@ public class Constants {
     public static final float MENU_TITLE_OFFSET = 50f;
     public static final float MENU_TEXT_OFFSET = -50f;
     public static final float FINAL_SCORE_OFFSET = 0f;
+    public static final float SPAWN_OFFSET = 1f;
 
     public static final String ASSETS_PATH = "PNG/";
     public static final String PLAYER_SHIP_PATH = ASSETS_PATH + "playerShip1_blue.png";
     public static final String METEORS_PATH = ASSETS_PATH + "Meteors/";
     public static final String LIFE_ICON_PATH = ASSETS_PATH + "UI/playerLife1_blue.png";
+
+    public static final String[] METEOR_TEXTURES = {
+            METEORS_PATH + "meteorBrown_big1.png",
+            METEORS_PATH + "meteorBrown_big2.png",
+            METEORS_PATH + "meteorBrown_big3.png",
+            METEORS_PATH + "meteorBrown_big4.png",
+            METEORS_PATH + "meteorBrown_med1.png",
+            METEORS_PATH + "meteorBrown_med3.png",
+            METEORS_PATH + "meteorBrown_small1.png",
+            METEORS_PATH + "meteorBrown_small2.png",
+            METEORS_PATH + "meteorBrown_tiny1.png",
+            METEORS_PATH + "meteorBrown_tiny2.png",
+            METEORS_PATH + "meteorGrey_big1.png",
+            METEORS_PATH + "meteorGrey_big2.png",
+            METEORS_PATH + "meteorGrey_big3.png",
+            METEORS_PATH + "meteorGrey_big4.png",
+            METEORS_PATH + "meteorGrey_med1.png",
+            METEORS_PATH + "meteorGrey_med2.png",
+            METEORS_PATH + "meteorGrey_small1.png",
+            METEORS_PATH + "meteorGrey_small2.png",
+            METEORS_PATH + "meteorGrey_tiny1.png",
+            METEORS_PATH + "meteorGrey_tiny2.png"
+    };
 }
