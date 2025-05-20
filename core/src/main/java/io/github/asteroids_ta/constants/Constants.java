@@ -27,7 +27,7 @@ public class Constants {
     public static final float LIFE_ICON_SIZE = 32f;
     public static final float SCORE_Y_OFFSET = 90f;
 
-    public static final String BACKGROUND_TILE_PATH = "assets/Backgrounds/black.png";
+    public static final String BACKGROUND_TILE_PATH = "Backgrounds/black.png";
     public static final float BACKGROUND_TILE_SIZE = 256f;
 
     public static final String MENU_TITLE = "ASTEROIDS";
@@ -39,7 +39,7 @@ public class Constants {
     public static final float MENU_TEXT_OFFSET = -50f;
     public static final float FINAL_SCORE_OFFSET = 0f;
 
-    public static final String ASSETS_PATH = "assets/PNG/";
+    public static final String ASSETS_PATH = "PNG/";
     public static final String PLAYER_SHIP_PATH = ASSETS_PATH + "playerShip1_blue.png";
     public static final String METEORS_PATH = ASSETS_PATH + "Meteors/";
     public static final String LIFE_ICON_PATH = ASSETS_PATH + "UI/playerLife1_blue.png";
