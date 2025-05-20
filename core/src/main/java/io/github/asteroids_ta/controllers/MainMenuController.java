@@ -2,9 +2,6 @@ package io.github.asteroids_ta.controllers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.asteroids_ta.constants.Constants;
 import io.github.asteroids_ta.managers.ScreenManager;
