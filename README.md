@@ -54,6 +54,14 @@ core/
 - Screen wrapping
 - Maximum asteroid limit
 
+### Bullet System
+- Space key to fire bullets
+- Bullets travel in the direction the player is facing
+- Bullets are destroyed when hitting asteroids or leaving screen bounds
+- Fire rate control to prevent rapid firing
+- Collision detection with circular bounds
+- Score points awarded for asteroid destruction
+
 ### Game Management
 - Score tracking with time-based points
 - Life management system
