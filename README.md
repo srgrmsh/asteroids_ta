@@ -156,4 +156,4 @@ The project uses GitHub Actions for continuous integration. Every push to the `d
 
 ## Contact
 
-Project Link: [https://github.com/srgrmsh/asteroids_ta/tree/develop](https://github.com/yourusername/asteroids_ta)
+Project Link: [https://github.com/srgrmsh/asteroids_ta](https://github.com/yourusername/asteroids_ta)
