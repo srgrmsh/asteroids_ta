@@ -21,9 +21,6 @@ public class LifeManager {
         return lives;
     }
 
-    public boolean isAlive(){
-        return lives > 0;
-    }
     public boolean isDead(){
         return lives <= 0;
     }

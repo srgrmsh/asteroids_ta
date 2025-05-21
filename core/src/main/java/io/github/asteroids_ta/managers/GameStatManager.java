@@ -23,8 +23,4 @@ public class GameStatManager {
         scoreManager.reset();
         lifeManager.reset(Constants.INITIAL_LIVES);
     }
-
-    public boolean isGameOver() {
-        return lifeManager.isDead();
-    }
 }

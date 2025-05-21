@@ -6,26 +6,32 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import io.github.asteroids_ta.AsteroidsGame;
 import io.github.asteroids_ta.constants.Constants;
 import io.github.asteroids_ta.controllers.GameController;
+import io.github.asteroids_ta.factory.GameControllerFactory;
+import io.github.asteroids_ta.managers.GameStatManager;
 
 public class GameScreen extends BaseScreen {
     private final GameController controller;
     private final OrthographicCamera camera;
-    private final FitViewport viewport;
-    private Texture lifeIcon;
-    private BitmapFont font;
+    private final Viewport viewport;
+    private final BitmapFont font;
+    private final Texture lifeIcon;
 
     public GameScreen(AsteroidsGame game, GameController controller) {
         super(game);
-        if (controller == null) {
-            throw new IllegalArgumentException("Controller cannot be null");
-        }
         this.controller = controller;
         this.camera = new OrthographicCamera();
         this.viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
+        this.font = new BitmapFont();
+        this.font.getData().setScale(Constants.FONT_SCALE);
+        this.font.setColor(Color.WHITE);
+        this.lifeIcon = new Texture(Gdx.files.internal(Constants.LIFE_ICON_PATH));
     }
 
     @Override
@@ -33,12 +39,7 @@ public class GameScreen extends BaseScreen {
         if (disposed) {
             throw new IllegalStateException("GameScreen has been disposed");
         }
-
-        font = new BitmapFont();
-        font.getData().setScale(Constants.FONT_SCALE);
         font.setColor(Color.WHITE);
-
-        lifeIcon = new Texture(Gdx.files.internal(Constants.LIFE_ICON_PATH));
     }
 
     @Override
@@ -46,25 +47,32 @@ public class GameScreen extends BaseScreen {
         controller.update(delta);
 
         camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
+        SpriteBatch batch = game.getBatch();
+        batch.setProjectionMatrix(camera.combined);
 
-        // Render game elements
-        controller.getPlayerController().render(game.getBatch());
-        controller.getAsteroidController().render(game.getBatch());
+        renderGameWorld(batch);
 
-        // Render lives
+        renderUI(batch);
+    }
+
+    private void renderGameWorld(SpriteBatch batch) {
+        controller.getPlayerController().render(batch);
+        controller.getAsteroidController().render(batch);
+        controller.getBulletController().render(batch);
+    }
+
+    private void renderUI(SpriteBatch batch) {
         int lives = controller.getGameStatManager().getLifeManager().getLives();
         for (int i = 0; i < lives; i++) {
-            game.getBatch().draw(lifeIcon,
+            batch.draw(lifeIcon,
                 Constants.UI_X_PADDING + i * Constants.LIFE_ICON_SPACING,
                 Constants.WORLD_HEIGHT - Constants.LIFE_ICON_Y_OFFSET,
                 Constants.LIFE_ICON_SIZE,
                 Constants.LIFE_ICON_SIZE);
         }
 
-        // Render score
         int score = controller.getGameStatManager().getScoreManager().getScore();
-        font.draw(game.getBatch(), "Score: " + score,
+        font.draw(batch, "Score: " + score,
             Constants.UI_X_PADDING,
             Constants.WORLD_HEIGHT - Constants.SCORE_Y_OFFSET);
     }
