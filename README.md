@@ -81,7 +81,6 @@ core/
 - **Up Arrow** or **W**: Thrust
 - **Space**: Start game / Confirm
 - **R**: Restart game
-- **Escape**: Return to menu
 
 ## Game Mechanics
 
@@ -100,6 +99,7 @@ core/
 ### Scoring
 - Time-based scoring: 10 points per second
 - Score interval: 1 second
+- Asteroid destruction: 100 points per asteroid
 
 ### Lives
 - Initial lives: 3
