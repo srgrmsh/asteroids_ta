@@ -25,9 +25,7 @@ public class PlayerFactory implements GameObjectFactory<Player> {
         if (disposed) {
             throw new IllegalStateException("PlayerFactory has been disposed");
         }
-        Player player = new Player();
-        player.getPosition().set(startX, startY);
-        return player;
+        return new Player(startX, startY);
     }
 
 

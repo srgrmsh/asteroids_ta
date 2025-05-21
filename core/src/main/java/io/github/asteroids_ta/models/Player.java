@@ -13,7 +13,11 @@ public class Player implements IGameObject {
     private boolean disposed;
 
     public Player() {
-        this.position = new Vector2(Constants.WORLD_WIDTH / 2f, Constants.WORLD_HEIGHT / 2f);
+        this(Constants.WORLD_WIDTH / 2f, Constants.WORLD_HEIGHT / 2f);
+    }
+
+    public Player(float startX, float startY) {
+        this.position = new Vector2(startX, startY);
         this.velocity = new Vector2(0, 0);
         this.rotation = Constants.PLAYER_INITIAL_ROTATION;
         this.bounds = new Circle(position.x + Constants.PLAYER_RADIUS, position.y + Constants.PLAYER_RADIUS, Constants.PLAYER_RADIUS);

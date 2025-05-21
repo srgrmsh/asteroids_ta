@@ -11,7 +11,7 @@ public class Constants {
     public static final float PLAYER_THRUST = 30f;
     public static final float PLAYER_SCALE = 1f;
     public static final float PLAYER_ROTATION_OFFSET = 90f;
-    public static final float PLAYER_ROTATION_SPEED = 220f;
+    public static final float PLAYER_ROTATION_SPEED = 200f;
 
     public static final int INITIAL_LIVES = 3;
     public static final float ASTEROID_RADIUS_DIVISOR = 4f;
@@ -71,4 +71,12 @@ public class Constants {
             METEORS_PATH + "meteorGrey_tiny1.png",
             METEORS_PATH + "meteorGrey_tiny2.png"
     };
+
+    public static final float BULLET_SPEED = 500f;
+    public static final float BULLET_RADIUS_DIVISOR = 4f;
+    public static final float BULLET_FIRE_RATE = 1f;
+    public static final String BULLET_TEXTURE_PATH = ASSETS_PATH + "Lasers/laserRed01.png";
+    public static final float BULLET_SCALE = 1f;
+
+    public static final int SCORE_PER_ASTEROID = 100;
 }

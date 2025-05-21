@@ -14,11 +14,11 @@ public class PlayerController {
     private final InputHandler inputHandler;
     private boolean disposed;
 
-    public PlayerController(Player player, PlayerFactory playerFactory) {
+    public PlayerController(Player player, PlayerFactory playerFactory, BulletController bulletController) {
         this.player = player;
         this.playerFactory = playerFactory;
         this.playerTextureRegion = new TextureRegion(playerFactory.getPlayerTexture());
-        this.inputHandler = new InputHandler(player);
+        this.inputHandler = new InputHandler(player, bulletController);
         this.disposed = false;
     }
 
